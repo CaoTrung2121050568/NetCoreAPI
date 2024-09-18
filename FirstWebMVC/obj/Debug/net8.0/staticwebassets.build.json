@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z66a9hjMNJhFacIJNcLFu0p2xiFtKEFSIFopZHqd/s0=",
+  "Hash": "Z5eTvq1G/UFiqV2lhFhwOousQQPKDoOFsUie46VCd+0=",
   "Source": "FirstWebMVC",
   "BasePath": "_content/FirstWebMVC",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Net_Core_API\\FirstWebMVC\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FirstWebMVC.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Net_Core_API\\FirstWebMVC\\wwwroot\\css\\Login.css",
+      "SourceId": "FirstWebMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Net_Core_API\\FirstWebMVC\\wwwroot\\",
+      "BasePath": "_content/FirstWebMVC",
+      "RelativePath": "css/Login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Login.css"
     },
     {
       "Identity": "C:\\Net_Core_API\\FirstWebMVC\\wwwroot\\css\\site.css",
