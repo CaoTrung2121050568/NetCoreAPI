@@ -15,5 +15,7 @@ namespace FirstWebMvc.Data
         }
 
         public DbSet<Student> Student { get; set; } = default!;
+        public DbSet<Person> Person {get; set;} = default!;
     }
+    
 }

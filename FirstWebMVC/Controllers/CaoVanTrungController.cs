@@ -7,4 +7,5 @@ public class CaoVanTrungController : Controller
     {
         return View();
     }
+    
 }
