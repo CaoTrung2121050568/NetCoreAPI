@@ -21,13 +21,13 @@ namespace FirstWebMVC.Migrations
                 name: "Person",
                 columns: table => new
                 {
+                    PersonId = table.Column<string>(type: "TEXT", nullable: false),
                     FullName = table.Column<string>(type: "TEXT", nullable: false),
-                    Address = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
+                    Address = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Person", x => x.FullName);
+                    table.PrimaryKey("PK_Person", x => x.PersonId);
                 });
         }
 
