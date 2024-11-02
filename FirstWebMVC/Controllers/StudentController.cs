@@ -6,13 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FirstWebMVC.Models.Entities;
+using FirstWebMVC.Models.Process;
 using FirstWebMvc.Data;
+{
+    
+}
 
 namespace FirstWebMVC.Controllers
 {
     public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ExcelProcess _excelProcess = new ExcelProcess();
 
         public StudentController(ApplicationDbContext context)
         {
@@ -152,6 +157,52 @@ namespace FirstWebMVC.Controllers
         private bool StudentExists(string id)
         {
             return _context.Student.Any(e => e.StudentID == id);
+        }
+        public async Task<IActionResult> Uploald()
+        {
+            return View ();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task <IActionResult> Upload(IFormFile file)
+        {
+            if (file!=null)
+            {
+                string fileExtension = Path.GetExtension (file.FileName);
+                if (fileExtension!=".xls"&& fileExtension!=".xlsx")
+                {
+                    ModelState.AddModelError("","Pleasư choose excelfile to upload!");
+                }
+                else
+                {
+                    // rename file when uploads to sever 
+                    var fileName = DateTime.Now.ToShortTimeString() +fileExtension;
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory()+"/Uploads/Excels",fileName);
+                    var fileLocation =new FileInfo(filePath).ToString();
+                    using (var stream = new FileStream (filePath,FileMode.Create))
+                    {
+                        // save file to sever
+                        await file.CopyToAsync(stream);
+                        // read data from excel fime fill DataTable 
+                        var dt =_excelProcess.ExcelToDataTable(fileLocation);
+                        // using for loop to read data from dt
+                        for (int i=0; i < dt.Rows.Count; i++)
+                        {
+                            // create new Student object 
+                            var ps = new Student ();
+                            // set value to attributes 
+                            ps.StudentID = dt.Rows[i] [0].ToString();
+                            ps.StudentName = dt.Rows[i] [1].ToString();
+                            ps.Address =dt.Rows[i] [2].ToString();
+                            _context.Add(ps);
+                        }
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction (nameof (Index));
+                    }
+                }
+
+            }
+            return View();
         }
     }
 }

@@ -20,10 +20,12 @@ namespace FirstWebMVC.Controllers
         }
 
         // GET: Person
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Person.ToListAsync());
         }
+
 
         // GET: Person/Details/5
         public async Task<IActionResult> Details(string id)
